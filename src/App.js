@@ -13,6 +13,7 @@ const paths = [
 ];
 
 class App extends Component {
+
   render() {
     return (
       

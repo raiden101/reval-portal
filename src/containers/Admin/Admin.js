@@ -5,7 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import { check_auth } from '../../utils/token_management';
 import FeatureList from './FeatureList/FeatureList';
 import AddCourses from './AddCourses/AddCourses';
-import AddStudents from './AddStudents/AddStudents';
+import UserRegistration from './userRegistration/userRegistration';
 
 
 const cancelToken = axios.CancelToken;
@@ -18,7 +18,7 @@ export default class Admin extends Component {
     let baseurl = props.match.url;
     this.routes = [
       { path: `${baseurl}/addCourses`, component: AddCourses },
-      { path: `${baseurl}/addStudents`, component: AddStudents }
+      { path: `${baseurl}/userRegistration`, component: UserRegistration }
     ];
   }
   
@@ -49,14 +49,14 @@ export default class Admin extends Component {
         <div className="row">
           <div className="col s12">
             <h4>Hello Admin</h4>
+            <hr />
           </div>
         </div>
-
         <div className="col s12 m4">
           <FeatureList />
         </div>
         
-        <div className="col s12 m8">
+        <div className="col s12 m7 offset-m1">
           <Switch>
             {this.routes.map((myRoute, index) => {
               return <Route 

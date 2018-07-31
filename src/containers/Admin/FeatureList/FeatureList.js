@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import './FeatureList.css';
 
-export default class FeatureList extends Component {
+class FeatureList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,35 +21,25 @@ export default class FeatureList extends Component {
     }
   }
 
-  add_active = (index) => {
-    console.log(index, this.state);
-    let modified_features = this.state.features.map((el, _index) => {
-      return {...el, active: _index === index}
-    });
-    // this.setState({ features: modified_features });
-    console.log('before');
-    this.setState(prevstate => {
-      console.log('heyooo');
-      return {
-        features: modified_features
-      }
-    })
-    console.log('after');
+  goto = (path) => {
+    this.props.history.push(path);
   }
 
   render() {
+    let curr_url = this.props.location.pathname;
     return (
       <div className="FeatureList">
         <div className="col s12 no_padding">
           <ul className="ul_style">
             {this.state.features.map((feature, index) => {
-              let _classes = `li_style${feature.active ? ' active': ''}`;
-              return <Link key={index} to={feature.path}>
-                <li
+              let _classes = 
+              `li_style${curr_url === feature.path ? ' active': ''}`;
+              return (<li
+                key={index}
                 className={_classes}
-                onClick={() => this.add_active(index)}
-                >{feature.name}</li>
-              </Link>
+                onClick={() => this.goto(feature.path)}
+                >{feature.name}
+              </li>)
             })}
           </ul>
         </div>
@@ -57,3 +47,5 @@ export default class FeatureList extends Component {
     )
   }
 }
+
+export default withRouter(FeatureList);
