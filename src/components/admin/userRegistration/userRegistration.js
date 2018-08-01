@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import { toast } from 'materialize-css';
 
-import Select from '../../../components/Select/Select';
-import { branches } from '../../../utils/sub_data';
+import Select from '../../UI/Select/Select';
+import { branches } from '../../../utils/select_data';
 
 export default class UserRegistration extends Component {
   state = {

@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import mat from 'materialize-css';
 
-import Select from '../../../components/Select/Select';
-import { sub_types, branches } from '../../../utils/sub_data';
+import Select from '../../UI/Select/Select';
+import { sub_types, branches, semesters } from '../../../utils/select_data';
 
 export default class AddCourses extends Component {
   state = {
     sub_code: "",
     sub_name: "",
     branch: "",
-    sub_type: ""
+    sub_type: "",
+    sem: 1
   }
 
   on_input_handler = (e) => {
@@ -18,9 +19,8 @@ export default class AddCourses extends Component {
   }
 
   on_submit = () => {
-    // console.log(this.state);
     axios.post('/api/admin/add_subject', {
-      subject: this.state
+      subject: { ...this.state, sem: Number(this.state.sem) }
     })
     .then(data => {
       mat.toast({ html: `<span>${data.data}</span>` })
@@ -81,7 +81,16 @@ export default class AddCourses extends Component {
           </div>
 
           <div className="row">
-            <div className="col s12">
+            <div className="col s12 m6">
+              <Select 
+              items={semesters}
+              name="sem"
+              msg="Select Semester"
+              on_input={this.on_input_handler}
+              />
+              <label>Sem</label>
+            </div>
+            <div className="col s12 m6">
               <button type="button"
               className="btn btn-wave blue darken-3"
               onClick={this.on_submit}>Submit</button>

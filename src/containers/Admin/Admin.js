@@ -3,9 +3,9 @@ import axios from 'axios';
 import { Route, Switch } from 'react-router-dom';
 
 import { check_auth } from '../../utils/token_management';
-import FeatureList from './FeatureList/FeatureList';
-import AddCourses from './AddCourses/AddCourses';
-import UserRegistration from './userRegistration/userRegistration';
+import FeatureList from '../../components/admin/FeatureList/FeatureList';
+import AddCourses from '../../components/admin/AddCourses/AddCourses';
+import UserRegistration from '../../components/admin/userRegistration/userRegistration';
 
 
 const cancelToken = axios.CancelToken;
