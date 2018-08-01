@@ -6,7 +6,7 @@ import { check_auth } from '../../utils/token_management';
 import FeatureList from '../../components/admin/FeatureList/FeatureList';
 import AddCourses from '../../components/admin/AddCourses/AddCourses';
 import UserRegistration from '../../components/admin/userRegistration/userRegistration';
-
+import AddStudentRegSubs from '../../components/admin/AddStudentRegSubs/AddStudentRegSubs';
 
 const cancelToken = axios.CancelToken;
 const source = cancelToken.source();
@@ -18,7 +18,8 @@ export default class Admin extends Component {
     let baseurl = props.match.url;
     this.routes = [
       { path: `${baseurl}/addCourses`, component: AddCourses },
-      { path: `${baseurl}/userRegistration`, component: UserRegistration }
+      { path: `${baseurl}/userRegistration`, component: UserRegistration },
+      { path: `${baseurl}/addStudentRegSubs`, component: AddStudentRegSubs }
     ];
   }
   

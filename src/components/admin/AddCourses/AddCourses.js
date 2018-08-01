@@ -11,7 +11,7 @@ export default class AddCourses extends Component {
     sub_name: "",
     branch: "",
     sub_type: "",
-    sem: 1
+    sem: ""
   }
 
   on_input_handler = (e) => {
