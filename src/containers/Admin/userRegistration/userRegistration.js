@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import { toast } from 'materialize-css';
+
+import Select from '../../../components/Select/Select';
+import { branches } from '../../../utils/sub_data';
 
 export default class UserRegistration extends Component {
   state = {
@@ -19,9 +23,11 @@ export default class UserRegistration extends Component {
       student_data: this.state
     })
     .then(data => {
-      console.log(data.data);
+      toast({ html: `${data.data}` })
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      toast({ html: `${err.message}` })
+    });
   }
 
   render() {
@@ -29,7 +35,7 @@ export default class UserRegistration extends Component {
       <div className="row">
         <form className="col s12">
           <h5 className="feature_header">
-          User Registration</h5>
+          Enter student information.</h5>
           <div className="row">
             <div className="input-field col s12 m6">
               <input 
@@ -63,17 +69,20 @@ export default class UserRegistration extends Component {
 
           <div className="row">
             <div className="input-field col s12 m6">
-              <input name="branch" type="text"
-              value={this.state.branch} 
-              onChange={this.on_input_change}/>
-              <label htmlFor="branch">Branch</label>
+              <Select
+              name="user_reg_branch"
+              on_input={this.on_input_change}
+              items={branches}
+              msg="Select branch"
+              />
+              <label>Branch</label>
             </div>
             <div className="col s12 m6">
               <button 
               type="button" 
               onClick={this.save_user}
               style={{marginTop: '20px'}}
-              className="btn btn-waves teal">
+              className="btn btn-waves blue darken-3">
               Submit</button>
             </div>
           </div>

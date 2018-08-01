@@ -57,6 +57,13 @@ export default class Admin extends Component {
         </div>
         
         <div className="col s12 m7 offset-m1">
+          {this.props.location.pathname === '/admin' ?
+          <p style={{fontSize: '17px'}}
+          className="teal-text">
+            Welcome Admin, <br />
+            Click on any one of the 
+            options to get started
+          </p>: null}
           <Switch>
             {this.routes.map((myRoute, index) => {
               return <Route 

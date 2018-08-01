@@ -1,3 +1,6 @@
+:root {
+  --theme-color: #1976d2;
+}
 body {
   margin: 0;
   padding: 0;
@@ -11,7 +14,10 @@ body {
 .feature_header {
   margin: 0px 0px 16px 0px;
   padding: 0px;
-  text-decoration: underline;
-  font-size: 20px;
-  color: teal;
+  font-size: 22px;
+  /* color: #1e88e5; */
+}
+
+.dropdown-content li > a, .dropdown-content li > span {
+  color: rgba(0, 0, 0, 0.71);
 }
