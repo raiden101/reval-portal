@@ -1,0 +1,7 @@
+.Reports li.collection-item:hover {
+  background-color: rgba(250, 250, 250, 0.9);
+}
+
+.Reports li.collection-item:hover {
+  cursor: pointer;
+}

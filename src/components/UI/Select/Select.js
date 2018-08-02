@@ -3,11 +3,13 @@ import M from 'materialize-css';
 
 
 export default class Select extends Component {
+
   componentDidMount() {
     M.FormSelect.init(document.querySelectorAll(
       `select[name=${this.props.name}`
     ));
   }
+  
   render() {
     return (
       <select onChange={this.props.on_input} name={this.props.name}>
@@ -17,6 +19,7 @@ export default class Select extends Component {
         {this.props.items.map((item, i) => (
           <option 
           key={i}
+          name={item.name}
           value={String(item.value)}
           >{item.name}</option>
         ))}

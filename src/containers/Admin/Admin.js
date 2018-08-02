@@ -1,28 +1,14 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import { Route, Switch } from 'react-router-dom';
 
 import { check_auth } from '../../utils/token_management';
 import FeatureList from '../../components/admin/FeatureList/FeatureList';
-import AddCourses from '../../components/admin/AddCourses/AddCourses';
-import UserRegistration from '../../components/admin/userRegistration/userRegistration';
-import AddStudentRegSubs from '../../components/admin/AddStudentRegSubs/AddStudentRegSubs';
+import FeatureRoutes from '../../components/admin/FeatureRoutes/FeatureRoutes';
 
 const cancelToken = axios.CancelToken;
 const source = cancelToken.source();
 
 export default class Admin extends Component {
-
-  constructor(props) {
-    super(props);
-    let baseurl = props.match.url;
-    this.routes = [
-      { path: `${baseurl}/addCourses`, component: AddCourses },
-      { path: `${baseurl}/userRegistration`, component: UserRegistration },
-      { path: `${baseurl}/addStudentRegSubs`, component: AddStudentRegSubs }
-    ];
-  }
-  
   componentDidMount() {
     let loc = this.props.location;
     if(loc.state !== "valid") {
@@ -65,14 +51,7 @@ export default class Admin extends Component {
             Click on any one of the 
             options to get started
           </p>: null}
-          <Switch>
-            {this.routes.map((myRoute, index) => {
-              return <Route 
-              key={index}
-              path={myRoute.path} 
-              component={myRoute.component}/>
-            })}
-          </Switch>
+          <FeatureRoutes />
         </div>
       
       </div>

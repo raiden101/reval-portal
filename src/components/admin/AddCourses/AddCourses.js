@@ -93,6 +93,7 @@ export default class AddCourses extends Component {
             <div className="col s12 m6">
               <button type="button"
               className="btn btn-wave blue darken-3"
+              style={{marginTop: '7px'}}
               onClick={this.on_submit}>Submit</button>
             </div>
           </div>
