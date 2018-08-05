@@ -36,3 +36,11 @@ export const branch_codes = [
   { name: 'Physics', value: 'ph' },
   { name: 'Humanities', value: 'hu' },
 ];
+
+export const find_name_if_code = code => {
+  let l = branch_codes.length;
+  for(let i=0;i<l;++i)
+    if(code === branch_codes[i].value)
+      return branch_codes[i].name;
+  return null;
+}

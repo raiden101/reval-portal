@@ -1,6 +1,6 @@
 const { reval, usn_booklet, subject, student } = require('../../models');
 
-// reval_subs: [{ sub_code: '', sub_name: ''}, ...]
+// reval_subs: [sub_code, ...]
 
 module.exports = (req, res) => {
   reval.updateMany(
@@ -8,9 +8,9 @@ module.exports = (req, res) => {
     { $set: { reval: false } }
   )
   .then(_ => {
-    return Promise.all(req.body.reval_subs.map(sub => {
+    return Promise.all(req.body.reval_subs.map(code => {
       return reval.updateOne(
-        { usn: req.usn, sub_code: sub.sub_code },
+        { usn: req.usn, sub_code: code },
         { $set: { reval: true } }
       )
     }))

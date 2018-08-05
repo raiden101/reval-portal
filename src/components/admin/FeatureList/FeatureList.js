@@ -15,7 +15,7 @@ class FeatureList extends Component {
         },
         { path: '/admin/addCourses', name: 'Add courses', active: false },
         { path: '/admin/addStudentRegSubs', name: 'Add student registered courses', active: false },
-        { path: '/admin/addBooklet', name: 'Add booklet code', active: false },
+        { path: '/admin/addBookletDetails', name: 'Add booklet code', active: false },
         { path: '/admin/reports', name: 'Reports', active: false }
       ]
     }

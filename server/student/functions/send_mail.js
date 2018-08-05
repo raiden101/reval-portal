@@ -40,10 +40,24 @@ module.exports = (req, res) => {
   Promise.all(
     [
       student.findOne({ usn: req.usn }, { name: 1 }), 
-      reval.find(
-        { usn: req.usn, reval: true }, 
-        { sub_code: 1, sub_name: 1, sem: 1 }
-      )
+      reval.aggregate([
+        { $match: { usn: req.usn, reval: true } },
+        {
+          $lookup: {
+            from: 'subject_details',
+            localField: "sub_code",
+            foreignField: "sub_code",
+            as: "sub_detail"
+          }
+        },
+        {
+          $project: {
+            sem: "$sub_detail.sem",
+            sub_code: 1, sub_name: 1
+          }
+        },
+        { $unwind: "$sem" }
+      ])
     ]
   )
   .then(data => {
@@ -58,7 +72,9 @@ module.exports = (req, res) => {
         res.json('mail sent successfuly'); 
       });
     })
-
+  })
+  .catch(err => {
+    res.json("error while sending the mail");
   })
   
 }

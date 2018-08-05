@@ -2,7 +2,7 @@ const { reval, student } = require('../../models');
 
 module.exports = (req, res) => {
   Promise.all([
-    student.findOne({ usn: req.usn }, { name: 1 }),
+    student.findOne({ usn: req.usn }),
     reval.find({ usn: req.usn }, { reval: 1, sub_code: 1, sub_name: 1 })
   ])
   .then(data => {

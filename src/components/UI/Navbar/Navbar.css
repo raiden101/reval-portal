@@ -1,0 +1,33 @@
+nav .nav-wrapper {
+  padding: 0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  /* background-color: #3F51B5;
+  color: white; */
+  background-color: white;
+  color: black;
+}
+
+nav img {
+  max-width: 240px;
+}
+
+nav {
+  margin-bottom: 16px;
+}
+
+nav .container {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+nav ul li {
+  cursor: pointer;
+  display: inline-block;
+  margin: 0px 10px;
+  font-size: 17px;
+}
+
+nav ul li:hover {
+  color: var(--theme-color);
+}

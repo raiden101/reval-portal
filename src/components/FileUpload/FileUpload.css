@@ -1,0 +1,12 @@
+.FormUpload input[type='file'] {
+  width: 100%;
+  padding: 20px;
+}
+
+.FormUpload {
+  border: 1px solid #bbb;
+}
+
+.FormUpload.active {
+  background-color: lightgreen;
+}

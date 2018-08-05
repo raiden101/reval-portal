@@ -4,7 +4,7 @@ import { toast } from 'materialize-css';
 
 import SemReport from './SemReport';
 import Select from '../../UI/Select/Select';
-import { branch_codes } from '../../../utils/select_data';
+import { branch_codes, find_name_if_code } from '../../../utils/select_data';
 import './Reports.css'
 
 const token = axios.CancelToken;
@@ -13,16 +13,16 @@ const source = token.source();
 export default class Reports extends Component {
 
   state = {
-    select_branch: "",
+    selected_branch_code: "",
     reval_data: null,
     curr_report_index: -1,
   }
 
   on_branch_selected = (e) => {
-    console.log(e.target.name)
     this.setState({ 
-      curr_report_index: -1 ,
-    })
+      curr_report_index: -1,
+      selected_branch_code: e.target.value
+    });
     axios.post('/api/admin/report',
     { branch: e.target.value },
     { cancelToken: source.token })
@@ -70,18 +70,23 @@ export default class Reports extends Component {
       style={{fontSize: "17px"}}>Select the branch for the reports.</p>
     }else {
       sem_arr = (
-        <ul className="collection with-header">
-          <li className="collection-header"
-          style={{backgroundColor: 'rgba(250, 250, 250, 0.9)'}}>
-            Tap on the list item for details.
-          </li>
-          {this.state.reval_data.map((data, index) => {
-            return <li 
-            onClick={() => this.on_sem_clicked(index)}
-            key={index}
-            className="collection-item">{data.sem}</li>
-          })}
-        </ul>
+        <Fragment>
+          <ul className="collection with-header">
+            <li className="collection-header"
+            style={{backgroundColor: 'rgba(250, 250, 250, 0.9)'}}>
+              Tap on the list item for details.
+            </li>
+            {this.state.reval_data.map((data, index) => {
+              return <li 
+              onClick={() => this.on_sem_clicked(index)}
+              key={index}
+              className="collection-item">{data.sem}</li>
+            })}
+          </ul>
+          <button className="btn btn-wave blue darken-3">
+            Print all 
+          </button>
+        </Fragment>
       )
     }
     if(this.state.curr_report_index === -1) {
@@ -99,6 +104,7 @@ export default class Reports extends Component {
     }else {
       data_to_reder = <SemReport 
       data={this.state.reval_data[this.state.curr_report_index]}
+      branch={find_name_if_code(this.state.selected_branch_code)}
       on_back_clicked={this.on_back_clicked} />
     }
   

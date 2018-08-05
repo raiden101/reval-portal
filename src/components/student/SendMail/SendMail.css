@@ -1,0 +1,13 @@
+.SendMail table tr td,
+.SendMail table th td {
+  padding: 8px;
+}
+
+/* .SendMail .input-field input[type=text]:focus + label {
+  color: orange;
+}
+
+.SendMail .input-field input[type=text]:focus {
+  border-bottom: 1px solid orange;
+  box-shadow: 0 1px 0 0 orange;
+} */

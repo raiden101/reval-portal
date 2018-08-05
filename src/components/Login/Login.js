@@ -4,15 +4,13 @@ import axios from 'axios';
 import { set_token } from '../../utils/token_management';
 import AuthRedirect from '../Auth_redirect/Auth_redirect';
 
-const cancelToken = axios.CancelToken;
-const source = cancelToken.source();
-
 
 export default class Login extends Component {
   state = {
     admin: 0,
-    username: "",
-    password: "",
+    username: "4nm16cs121",
+    admin_password: "",
+    student_password: "1998-06-08",
     login_error: ""
   }
   
@@ -27,11 +25,15 @@ export default class Login extends Component {
   }
 
   onSubmit() {
-    axios.post('/api/auth/login', {
-      username: this.state.username, 
-      password: this.state.password,
+    let auth_data = {
+      username: this.state.username,
       admin: this.state.admin
-    }, { cancelToken: source.token })
+    };
+    auth_data['password'] = (
+      auth_data.admin === 1 ? 
+      this.state.admin_password : this.state.student_password
+    );
+    axios.post('/api/auth/login', auth_data)
     .then(data => {
       if(data.data.error) {
         this.setState({ login_error: data.data.error })
@@ -43,18 +45,30 @@ export default class Login extends Component {
       }
     })
     .catch(err => {
-      if (axios.isCancel(err))
-        console.log(err.message);
-      else
-        this.setState({ login_error: "error while loggin in!!" })
+      this.setState({ login_error: "error while loggin in!!" })
     })
   }
 
-  componentWillUnmount() {
-    source.cancel('[Login] cancel called');
-  }
-
   render() {
+    let password_field = this.state.admin === 1 ? (
+      <Fragment>
+        <input 
+        type="password"
+        name="admin_password"
+        value={this.state.admin_password}
+        onChange={this.update_input('admin_password')} />
+        <label htmlFor="admin_password">Password</label>
+      </Fragment>
+    ) : (
+      <Fragment>
+        <input 
+        type="date"
+        name="student_password"
+        value={this.state.student_password}
+        onChange={this.update_input('student_password')} />
+        <label htmlFor="student_password">Password</label>
+      </Fragment>
+    );
     return (
       <Fragment>
         <AuthRedirect />
@@ -77,12 +91,7 @@ export default class Login extends Component {
             
             <div className="row">
               <div className="input-field col s12">
-                <input 
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.update_input('password')} />
-                <label htmlFor="password">Password</label>
+                {password_field}
               </div>
             </div>
             

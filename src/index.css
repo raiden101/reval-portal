@@ -11,6 +11,10 @@ body {
   font-family: Roboto;
 }
 
+.no_margin_padding {
+  margin: 0px;
+  padding: 0px;
+}
 .feature_header {
   margin: 0px 0px 16px 0px;
   padding: 0px;
