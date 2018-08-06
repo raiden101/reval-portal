@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import axios from 'axios';
 
 import { check_auth } from '../../utils/token_management';
 import StudentMain from './StudentMain';
+import Navbar from '../../components/UI/Navbar/Navbar';
 
 const CancelToken = axios.CancelToken;
 const source = CancelToken.source()
@@ -31,17 +32,21 @@ export default class Student extends Component {
 
   render() {
     return (
-      <div className="row Student">
-    
-        <div className="row">
-          <div className="col s12">
-            <StudentMain 
-            history={this.props.history}/>
+      <Fragment>
+        <Navbar />
+        <div className="container">
+          <div className="row Student">
+      
+          <div className="row">
+            <div className="col s12">
+              <StudentMain 
+              history={this.props.history}/>
+            </div>
+          </div>
+        
           </div>
         </div>
-      
-      </div>
-      
+      </Fragment>
     )
   }
 }

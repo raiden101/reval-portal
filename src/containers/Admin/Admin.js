@@ -1,9 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import axios from 'axios';
 
 import { check_auth } from '../../utils/token_management';
 import FeatureList from '../../components/admin/FeatureList/FeatureList';
 import FeatureRoutes from '../../components/admin/FeatureRoutes/FeatureRoutes';
+import Navbar from '../../components/UI/Navbar/Navbar';
 
 const cancelToken = axios.CancelToken;
 const source = cancelToken.source();
@@ -31,30 +32,35 @@ export default class Admin extends Component {
   
   render() {
     return (
-      <div className="row">
-        
-        <div className="row">
-          <div className="col s12">
-            <h4>Hello Admin</h4>
-            <hr />
+      <Fragment>
+        <Navbar />
+        <div className="container">
+          <div className="row">
+            
+            <div className="row">
+              <div className="col s12">
+                <h4>Hello Admin</h4>
+                <hr />
+              </div>
+            </div>
+            <div className="col s12 m4">
+              <FeatureList />
+            </div>
+            
+            <div className="col s12 m7 offset-m1">
+              {this.props.location.pathname === '/admin' ?
+              <p style={{fontSize: '17px'}}
+              className="teal-text">
+                Welcome Admin, <br />
+                Click on any one of the 
+                options to get started
+              </p>: null}
+              <FeatureRoutes />
+            </div>
+          
           </div>
         </div>
-        <div className="col s12 m4">
-          <FeatureList />
-        </div>
-        
-        <div className="col s12 m7 offset-m1">
-          {this.props.location.pathname === '/admin' ?
-          <p style={{fontSize: '17px'}}
-          className="teal-text">
-            Welcome Admin, <br />
-            Click on any one of the 
-            options to get started
-          </p>: null}
-          <FeatureRoutes />
-        </div>
-      
-      </div>
+      </Fragment>
     )
   }
 }
