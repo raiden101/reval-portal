@@ -4,6 +4,7 @@ import mat from 'materialize-css';
 
 import Select from '../../UI/Select/Select';
 import { sub_types, branches, semesters } from '../../../utils/select_data';
+import FileUpload from '../../FileUpload/FileUpload';
 
 export default class AddCourses extends Component {
   state = {
@@ -96,6 +97,11 @@ export default class AddCourses extends Component {
               style={{marginTop: '7px'}}
               onClick={this.on_submit}>Submit</button>
             </div>
+            <div className="col s12">
+              <FileUpload 
+                url_path="/api/admin/add_subjects"
+                label_name="Add Subjects" />  
+            </div>      
           </div>
           
         </form>

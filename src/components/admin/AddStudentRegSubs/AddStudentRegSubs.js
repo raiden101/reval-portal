@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import mat from 'materialize-css';
 import axios from 'axios';
 
+import FileUpload from '../../FileUpload/FileUpload';
+
 export default class AddStudentRegSubs extends Component {
   state = {
     usn: "",
@@ -65,6 +67,11 @@ export default class AddStudentRegSubs extends Component {
               style={{marginTop: '21px'}}
               onClick={this.on_submit}
               className="blue darken-3 btn btn-wave">Submit</button>
+            </div>
+            <div className="col s12">
+            <FileUpload 
+              url_path="/api/admin/add_stud_reg_courses"
+              label_name="Student reg. courses" />  
             </div>
           </div>
 

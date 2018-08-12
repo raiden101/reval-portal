@@ -16,3 +16,7 @@ hr {
 #trash_info {
   margin-top: 40px;
 }
+
+#trash_info h6 {
+  margin-bottom: 25px;
+}

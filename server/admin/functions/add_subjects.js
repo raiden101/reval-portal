@@ -14,7 +14,7 @@ module.exports = (req, res) => {
   let subject_data = req.file_data;
   let check = is_valid(subject_data, format_array, 0);
   if(!check.success)
-    res.json({ error: check.error });
+    res.json(check.error);
   else 
     Promise.all(subject_data.map(sub => {
       return new subject({

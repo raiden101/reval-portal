@@ -7,7 +7,7 @@ module.exports = (req, res) => {
   let booklet_details = req.file_data;
   let check = is_valid(booklet_details, format_array, -1);  // no dup check.
   if(!check.success)
-    return res.json({ error: check.error });
+    return res.json(check.error);
 
   Promise.all(booklet_details.map(data => {
     return new usn_booklet({
@@ -17,5 +17,5 @@ module.exports = (req, res) => {
     }).save();
   }))
   .then(_ => res.json("success"))
-  .catch(_ => res.json({ error: "error while uploading!! "}));
+  .catch(_ => res.json("error while uploading!!"));
 }

@@ -109,10 +109,19 @@ export default class StudentMain extends Component {
             <div className="col s12 m4 offset-m1" id="trash_info">
               <h6>
                 <img src={info_icon} alt="i" />
-                Click on the subject you want to select</h6>
+                Subjects you have selected will be marked in Blue.
+              </h6>
+              <h6>
+                <img src={info_icon} alt="i" />
+                Click on the subject you want to select.</h6>
               <h6>
               <img src={info_icon} alt="i" />
-                Click again to deselect</h6>
+                Click again to deselect.
+              </h6>
+              <h6>
+              <img src={info_icon} alt="i" />
+                Press Apply to apply for revaluation.
+              </h6>
             </div>
           </div>
         </div>  

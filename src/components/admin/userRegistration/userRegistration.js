@@ -4,6 +4,7 @@ import { toast } from 'materialize-css';
 
 import Select from '../../UI/Select/Select';
 import { branches } from '../../../utils/select_data';
+import FileUpload from '../../FileUpload/FileUpload';
 
 export default class UserRegistration extends Component {
   state = {
@@ -84,6 +85,11 @@ export default class UserRegistration extends Component {
               style={{marginTop: '20px'}}
               className="btn btn-waves blue darken-3">
               Submit</button>
+            </div>
+            <div className="col s12">
+            <FileUpload 
+              url_path="/api/admin/add_students"
+              label_name="Add Student details" /> 
             </div>
           </div>
 

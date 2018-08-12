@@ -13,7 +13,7 @@ module.exports = (req, res) => {
   let student_data = req.file_data;
   let check = is_valid(student_data, format_array, 0);
   if(!check.success)
-    res.json({ error: check.error });
+    res.json(check.error);
   else 
     Promise.all(student_data.map(stud => {
       return new student({
