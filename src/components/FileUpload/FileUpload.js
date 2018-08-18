@@ -40,7 +40,7 @@ export default class FileUpload extends Component {
         file_path: "", file: null, 
         filename: null, submitting: false 
       });
-      toast({ html: `${err}` });
+      toast({ html: `${err.message}` });
     });
   }
 

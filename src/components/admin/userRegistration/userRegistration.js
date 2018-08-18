@@ -12,7 +12,8 @@ export default class UserRegistration extends Component {
     usn: "",
     dob: "",
     branch: "",
-    email: ""
+    email: "",
+    form_error: null
   }
 
   on_input_change = (e) => {
@@ -20,6 +21,14 @@ export default class UserRegistration extends Component {
   }
 
   save_user = () => {
+    for(let key in this.state) {
+      if(key !== 'form_error' && 
+      (this.state[key] === "" || this.state[key] === null)) {
+        this.setState({ form_error: "Enter all the fields!" });
+        return;
+      }
+    }
+    this.setState({ form_error: null })
     axios.post('/api/admin/add_student', {
       student_data: this.state
     })
@@ -68,10 +77,10 @@ export default class UserRegistration extends Component {
             </div>
           </div>
 
-          <div className="row">
+          <div className="row no_margin_padding">
             <div className="input-field col s12 m6">
               <Select
-              name="user_reg_branch"
+              name="branch"
               on_input={this.on_input_change}
               items={branches}
               msg="Select branch"
@@ -86,10 +95,16 @@ export default class UserRegistration extends Component {
               className="btn btn-waves blue darken-3">
               Submit</button>
             </div>
+          </div>
+          <div className="row no_margin_padding">
+            <div className="col s12 red-text no_margin_padding"
+            style={{margin: '0px 0px 10px 0px'}}>
+              {this.state.form_error}
+            </div>
             <div className="col s12">
-            <FileUpload 
-              url_path="/api/admin/add_students"
-              label_name="Add Student details" /> 
+              <FileUpload 
+                url_path="/api/admin/add_students"
+                label_name="Add Student details" /> 
             </div>
           </div>
 

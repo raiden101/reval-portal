@@ -12,7 +12,8 @@ export default class AddCourses extends Component {
     sub_name: "",
     branch: "",
     sub_type: "",
-    sem: ""
+    sem: "",
+    form_error: ""
   }
 
   on_input_handler = (e) => {
@@ -20,6 +21,14 @@ export default class AddCourses extends Component {
   }
 
   on_submit = () => {
+    for(let key in this.state) {
+      if(key !== 'form_error' && 
+      (this.state[key] === "" || this.state[key] === null)) {
+        this.setState({ form_error: "Enter all the fields!" });
+        return;
+      }
+    }
+    this.setState({ form_error: null })
     axios.post('/api/admin/add_subject', {
       subject: { ...this.state, sem: Number(this.state.sem) }
     })
@@ -96,12 +105,18 @@ export default class AddCourses extends Component {
               className="btn btn-wave blue darken-3"
               style={{marginTop: '7px'}}
               onClick={this.on_submit}>Submit</button>
+            </div>    
+          </div>
+          <div className="row">
+            <div className="col s12 red-text"
+            style={{margin: "0px 0px 14px 0px"}}>
+              {this.state.form_error}
             </div>
             <div className="col s12">
               <FileUpload 
                 url_path="/api/admin/add_subjects"
                 label_name="Add Subjects" />  
-            </div>      
+            </div>  
           </div>
           
         </form>
